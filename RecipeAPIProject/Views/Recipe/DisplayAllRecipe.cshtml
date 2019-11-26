@@ -1,0 +1,25 @@
+﻿
+@{
+    ViewData["Title"] = "DisplayAllRecipe";
+}
+@model RecipeRoot
+<h1>DisplayAllRecipe</h1>
+
+<table>
+    <tr>
+        <th>Title</th>
+        <th>Link</th>
+        <th>Ingredients</th>
+        <th>Thumbnail</th>
+    </tr>
+    @for (int i = 0; i < @Model.results.Length; i++)  
+    {
+        <tr> 
+            <td>@Model.results[i].title</td>
+            <td><a href="@Model.results[i].href">Link</a></td>
+            <td>@Model.results[i].ingredients</td>
+            <td><img src="@Model.results[i].thumbnail" alt="Food Pic"> </td>
+            <td><a href="../Recipe/AddFavorites?favorite=@i" >Add To Favorites</a></td>
+        </tr>
+    }
+</table>
