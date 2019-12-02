@@ -1,0 +1,24 @@
+﻿@{
+    ViewData["Title"] = "AddToFavorites";
+}
+@using RecipeAPIProject.Models
+@model List<Favorites>
+<h1>AddToFavorites</h1>
+
+<table>
+    <tr>
+        <th>Title</th>
+        <th>Link</th>
+        <th>Ingredients</th>
+        <th>Thumbnail</th>
+    </tr>
+    @foreach(Favorites favorites in Model)
+    {
+        <tr>
+            <td>@favorites.Title</td>
+            <td>@favorites.Link</td>
+            <td>@favorites.Ingredients</td>
+            <td>@favorites.User</td>
+        </tr>
+    }
+</table>

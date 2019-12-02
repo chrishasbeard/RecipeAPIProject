@@ -135,7 +135,7 @@ namespace RecipeAPIProject.Models
 
             modelBuilder.Entity<Favorites>(entity =>
             {
-                entity.HasNoKey();
+                entity.Property(e => e.Id).HasColumnName("ID");
 
                 entity.Property(e => e.Ingredients)
                     .IsRequired()
@@ -154,7 +154,7 @@ namespace RecipeAPIProject.Models
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.Favorites)
                     .HasForeignKey(d => d.UserId)
-                    .HasConstraintName("FK__Favorites__UserI__5DCAEF64");
+                    .HasConstraintName("FK__Favorites__UserI__60A75C0F");
             });
 
             OnModelCreatingPartial(modelBuilder);

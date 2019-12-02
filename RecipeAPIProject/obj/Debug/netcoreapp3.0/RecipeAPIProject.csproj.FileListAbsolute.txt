@@ -137,3 +137,5 @@ C:\Users\Holmes HQ\source\repos\RecipeAPIProject\RecipeAPIProject\bin\Debug\netc
 C:\Users\Holmes HQ\source\repos\RecipeAPIProject\RecipeAPIProject\bin\Debug\netcoreapp3.0\Newtonsoft.Json.Bson.dll
 C:\Users\Holmes HQ\source\repos\RecipeAPIProject\RecipeAPIProject\obj\Debug\netcoreapp3.0\RecipeAPIProject.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\Holmes HQ\source\repos\RecipeAPIProject\RecipeAPIProject\obj\Debug\netcoreapp3.0\RecipeAPIProject.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Holmes HQ\source\repos\RecipeAPIProject\RecipeAPIProject\obj\Debug\netcoreapp3.0\Razor\Views\Recipe\AddFavorites.cshtml.g.cs
+C:\Users\Holmes HQ\source\repos\RecipeAPIProject\RecipeAPIProject\obj\Debug\netcoreapp3.0\Razor\Views\Recipe\AddToFavorites.cshtml.g.cs

@@ -1,0 +1,23 @@
+﻿
+@{
+    ViewData["Title"] = "AddFavorites";
+}
+@model RecipeRoot
+<h1>AddFavorites</h1>
+
+<table>
+    <tr>
+        <th>Title</th>
+        <th>Link</th>
+
+    </tr>
+    @foreach (var i in Model.href)
+    {
+
+        <tr>
+            <th>@Model.title</th>
+            <th>@Model.href</th>
+
+        </tr>
+    }
+</table>

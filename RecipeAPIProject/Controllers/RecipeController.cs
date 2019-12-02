@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Runtime.Serialization.Json;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -15,7 +16,7 @@ namespace RecipeAPIProject.Controllers
     {
         public readonly HttpClient _client;
         private readonly RecipeDbContext _context;
-
+        //private List<Favorites> userFavorites = new List<Favorites>();
 
         public RecipeController(IHttpClientFactory client, RecipeDbContext context)
         {
@@ -58,15 +59,46 @@ namespace RecipeAPIProject.Controllers
 
             return View(recipes);
         }
-        public IActionResult AddFavorites(int favorite)
+        public IActionResult AddToFavorites()
         {
-            string favListJson = HttpContext.Session.GetString("FavListSession");
-            var something = JsonConvert.DeserializeObject<RecipeRoot>(favListJson);
-
-            var favoriteRecipe = something.results[favorite];
-            return View();
+            string user = GetUser();
+            var theseFavorites = _context.Favorites.Where(favorites => favorites.UserId == user).ToList();
+            return View(theseFavorites);
         }
 
+        public IActionResult AddFavorites(int favorite)
+        {
+            var foundFavoriteRecipe = HttpContext.Session.GetString("FavListSession");
+            var aListOfStuff = JsonConvert.DeserializeObject<RecipeRoot>(foundFavoriteRecipe);
+            Result theFavorite = aListOfStuff.results[favorite];
+            var User = GetUser();
+            Favorites ummUmmOK = new Favorites();
+            ummUmmOK.UserId = User;
+            ummUmmOK.Ingredients = theFavorite.ingredients;
+            ummUmmOK.Link = theFavorite.href;
+            ummUmmOK.Title = theFavorite.title;
+            _context.Favorites.Add(ummUmmOK);
+            _context.SaveChanges();
+            //userFavorites.Add(ummUmmOK);
+            //string favListJson = HttpContext.Session.GetString("FavListSession");
+            //var something = JsonConvert.DeserializeObject<RecipeRoot>(favListJson);
+
+            //var favoriteRecipe = something.results[favorite];
+           
+            return RedirectToAction("AddToFavorites");
+        }
+        private string GetUser()
+        {
+            return User.FindFirst(ClaimTypes.NameIdentifier).Value;
+        }
+        //private void PopulateFavorites()
+        //{
+        //    string FavList = HttpContext.Session.GetString("FavListSession");
+        //    if (FavList != null)
+        //    {
+        //        userFavorites = JsonConvert.DeserializeObject<List<Favorites>>(FavList);
+        //    }
+        //}
         public IActionResult Index()
         {
             return View();
